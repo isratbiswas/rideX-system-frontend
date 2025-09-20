@@ -31,6 +31,7 @@ export function LoginForm({
     console.log(data, "isu");
     try {
       const res = await login(data).unwrap();
+      console.log(res, "miru");
       if (res.success) {
         toast.success("Logged in successfully");
       }

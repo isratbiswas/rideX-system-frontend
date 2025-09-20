@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import Root from "./Root";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
@@ -8,29 +8,43 @@ import Contact from "@/pages/Contact";
 import UnAuthorized from "@/pages/UnAuthorized";
 import LoginPage from "@/pages/Login";
 import RegisterPage from "@/pages/Register";
+import { withAuth } from "@/utils/withAuth";
+import DashBoardLayout from "@/components/layout/DashBoardLayout";
+import { role } from "@/constants";
+import type { TRole } from "@/types";
+import { generateRoutes } from "@/utils/generateRoute";
+import { adminSideBarItems } from "./adminSideBarItems";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    Component: Root,
     children: [
-      { path: "/", element: <Home /> },
-      { path: "/about", element: <About /> },
-      { path: "/Features", element: <Features /> },
-      { path: "/contact", element: <Contact /> },
+      { path: "/", Component: Home },
+      { path: "/about", Component: About },
+      { path: "/Features", Component: Features },
+      { path: "/contact", Component: Contact },
+    ],
+  },
+  {
+    Component: withAuth(DashBoardLayout, role.superAdmin as TRole),
+    path: "/admin",
+    children: [
+      { index: true, element: <Navigate to="/admin/anlytics" /> },
+      ...generateRoutes(adminSideBarItems),
     ],
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    Component: LoginPage,
   },
   {
     path: "/register",
-    element: <RegisterPage />,
+    Component: RegisterPage,
   },
   {
     path: "/unauthorized",
-    element: <UnAuthorized />,
+    Component: UnAuthorized,
   },
 ]);
 

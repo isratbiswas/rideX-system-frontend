@@ -28,10 +28,10 @@ const registerSchema = z
       })
       .max(50),
     email: z.email(),
-    password: z.string().min(8, { error: "Password is too short" }),
+    password: z.string().min(5, { error: "Password is too short" }),
     confirmPassword: z
       .string()
-      .min(8, { error: "Confirm Password is too short" }),
+      .min(5, { error: "Confirm Password is too short" }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Password do not match",
