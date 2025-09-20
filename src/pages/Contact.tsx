@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
@@ -107,12 +106,14 @@ const Contact = () => {
                   </FormItem>
                 )}
               />
-              <Button
-                type="submit"
-                className="mb-4 w-96 mr-10 bg-green-700 hover:bg-green-900"
-              >
-                Submit
-              </Button>
+              <div className="mx-auto ">
+                <Button
+                  type="submit"
+                  className="mb-4  items-center ml-10 w-96  bg-green-700 hover:bg-green-900"
+                >
+                  Submit
+                </Button>
+              </div>
             </form>
           </Form>
         </div>

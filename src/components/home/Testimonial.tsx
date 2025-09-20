@@ -1,4 +1,3 @@
-import React from "react";
 const feedbacks = [
   {
     name: "Nabiha Islam",
@@ -23,7 +22,7 @@ const feedbacks = [
 ];
 const Testimonial = () => {
   return (
-    <section className="py-16 text-center">
+    <section className="py-16 ml-2 mr-2 text-center">
       <h1 className="text-3xl font-bold mb-4 ">What Our Riders Say</h1>
       <div className="grid lg:grid-cols-4    sm:grid-cols-1 gap-4 m-4">
         {feedbacks.map((feedback, i) => (

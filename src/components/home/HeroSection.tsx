@@ -1,10 +1,9 @@
-import React from "react";
 import { Button } from "../ui/button";
 
 const HeroSection = () => {
   return (
-    <div className="pt-8">
-      <section className="bg-gray-50 rounded-md lg:grid  lg:place-content-center">
+    <div className="pt-8 ">
+      <section className=" ml-4 mr-4 bg-gray-50  rounded-md lg:grid  lg:place-content-center">
         <div className="mx-auto px-4 py-16 sm:px-6 sm:py-24 md:grid md:grid-cols-2 md:items-center md:gap-4 lg:px-8 lg:py-32">
           <div className="max-w-prose text-left lg:ml-10">
             <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">

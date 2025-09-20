@@ -1,5 +1,3 @@
-import React from "react";
-
 const Footer = () => {
   return (
     <div>
@@ -8,11 +6,6 @@ const Footer = () => {
           <div className="lg:flex lg:items-start lg:gap-8">
             <div className="text-teal-600 dark:text-teal-300">
               <div className=" flex  md:items-center gap-4">
-                {/* <img
-                  src="https://images-platform.99static.com//9wMmKJaFmUE1o63VZO7fgqxhOk8=/1083x2387:1929x3234/fit-in/500x500/99designs-contests-attachments/113/113769/attachment_113769214"
-                  className="w-14 rounded-full"
-                  alt="ride-logo"
-                /> */}
                 <h1 className="text-white font-bold text-3xl mt-3">RideX</h1>
               </div>
             </div>
@@ -20,7 +13,7 @@ const Footer = () => {
             <div className="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
               <div className="col-span-2">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-300 dark:text-white">
+                  <h2 className="text-2xl font-bold text-gray-300 mt-3 dark:text-white">
                     Get the latest news!
                   </h2>
 
@@ -67,16 +60,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#"
-                      className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
-                    >
-                      1on1 Coaching
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+                      className="text-gray-300 transition hover:opacity-75 dark:text-gray-200"
                     >
                       Company Review
                     </a>
@@ -85,7 +69,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#"
-                      className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+                      className="text-gray-300 transition hover:opacity-75 dark:text-gray-200"
                     >
                       Accounts Review
                     </a>
@@ -94,7 +78,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#"
-                      className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+                      className="text-gray-300 transition hover:opacity-75 dark:text-gray-200"
                     >
                       HR Consulting
                     </a>
@@ -103,7 +87,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#"
-                      className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+                      className="text-gray-300 transition hover:opacity-75 dark:text-gray-200"
                     >
                       SEO Optimisation
                     </a>

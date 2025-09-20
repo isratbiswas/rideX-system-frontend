@@ -1,5 +1,3 @@
-import React from "react";
-
 const steps = [
   { title: "Book Your Ride", desc: "Choose pickup & drop location easily." },
   { title: "Driver Accepts", desc: "Nearby drivers accept your request." },

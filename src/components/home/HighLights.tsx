@@ -26,7 +26,7 @@ const services = [
 ];
 const HighLights = () => {
   return (
-    <section className="py-16  text-center">
+    <section className="py-16   text-center">
       <h1 className="text-3xl font-bold mb-4 ">Why Choose RideX?</h1>
       <div className="grid lg:grid-cols-4 sm:grid-cols-1 gap-4 px-8">
         {services.map((service, i) => (

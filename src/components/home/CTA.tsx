@@ -1,8 +1,6 @@
-import React from "react";
-
 const CTA = () => {
   return (
-    <section className="bg-gray-50 rounded-md  py-16 text-center">
+    <section className="bg-gray-50 ml-4 mr-4 rounded-md  py-16 text-center">
       <h2 className="text-3xl text-gray-900 font-bold mb-4">
         Ready to Ride with RideX?
       </h2>

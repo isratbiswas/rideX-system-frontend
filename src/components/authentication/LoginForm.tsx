@@ -36,11 +36,8 @@ export function LoginForm({
         toast.success("Logged in successfully");
       }
       navigate("/");
-    } catch (err) {
-      console.error(err);
-      if (err.data.message === "password does not match") {
-        toast.error("Invalid credentials");
-      }
+    } catch (error) {
+      toast.error("Invalid credentials");
     }
   };
   return (

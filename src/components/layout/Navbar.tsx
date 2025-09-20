@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ModeToggle } from "../Mode.toggle";
 import { Link } from "react-router";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";

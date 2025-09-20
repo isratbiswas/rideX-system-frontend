@@ -2,8 +2,7 @@ import CTA from "@/components/home/CTA";
 import HeroSection from "@/components/home/HeroSection";
 import HighLights from "@/components/home/HighLights";
 import HowItWorks from "@/components/home/HowItWorks";
-import Testimonial from "@/components/home/testimonial";
-import React from "react";
+import Testimonial from "@/components/home/Testimonial";
 
 const Home = () => {
   return (
