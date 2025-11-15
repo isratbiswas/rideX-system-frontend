@@ -1,3 +1,4 @@
+import type { LucideIcon } from "lucide-react";
 import type { ComponentType } from "react";
 export type { ILogin } from "./auth.type";
 export type TRole = "SUPER_ADMIN" | "ADMIN" | "RIDER" | "DRIVER";
@@ -15,5 +16,6 @@ export interface ISideBarItem {
     title: string;
     url: string;
     component: ComponentType;
+    icon?: LucideIcon;
   }[];
 }

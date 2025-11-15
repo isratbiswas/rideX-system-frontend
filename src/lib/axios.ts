@@ -5,6 +5,20 @@ export const axiosInstance = axios.create({
   baseURL: config.baseUrl,
   withCredentials: true,
 });
+// optional interceptors
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // ignore 403 on user/me to prevent annoying logs
+    if (
+      error.response?.status === 403 &&
+      error.config.url?.includes("/user/me")
+    ) {
+      return Promise.resolve({ data: null });
+    }
+    return Promise.reject(error);
+  }
+);
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(

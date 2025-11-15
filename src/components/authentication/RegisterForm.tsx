@@ -18,6 +18,13 @@ import { useRegisterMutation } from "../redux/features/auth/auth.api";
 import toast from "react-hot-toast";
 import Password from "../ui/Password";
 import { z } from "zod";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 const registerSchema = z
   .object({
@@ -28,6 +35,10 @@ const registerSchema = z
       })
       .max(50),
     email: z.email(),
+    role: z.enum(["RIDER", "DRIVER"], {
+      message: "Role is required",
+    }),
+
     password: z.string().min(5, { error: "Password is too short" }),
     confirmPassword: z
       .string()
@@ -52,6 +63,7 @@ export function RegisterForm({
       email: "",
       password: "",
       confirmPassword: "",
+      role: "RIDER",
     },
   });
 
@@ -60,6 +72,7 @@ export function RegisterForm({
       name: data.name,
       email: data.email,
       password: data.password,
+      role: data.role,
     };
     const toastId = toast.loading("Loading");
     try {
@@ -150,6 +163,30 @@ export function RegisterForm({
                 <FormControl>
                   <Password {...field} />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="role"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Select Role</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your role" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="RIDER">Rider</SelectItem>
+                    <SelectItem value="DRIVER">Driver</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}

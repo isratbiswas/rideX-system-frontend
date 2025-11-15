@@ -8,12 +8,20 @@ import Contact from "@/pages/Contact";
 import UnAuthorized from "@/pages/UnAuthorized";
 import LoginPage from "@/pages/Login";
 import RegisterPage from "@/pages/Register";
-import { withAuth } from "@/utils/withAuth";
 import DashBoardLayout from "@/components/layout/DashBoardLayout";
-import { role } from "@/constants";
-import type { TRole } from "@/types";
+import Analytics from "@/pages/Admin/Analytics";
+import RideRequestForm from "@/pages/Rider/RideRequestForm";
+import RiderOverView from "@/pages/Admin/RiderOverView";
 import { generateRoutes } from "@/utils/generateRoute";
 import { adminSideBarItems } from "./adminSideBarItems";
+import { riderSideBarItems } from "./riderSideBarItems";
+import { driverSideBarItems } from "./driverSideBarItems";
+// import { withAuth } from "@/utils/withAuth";
+// import DashBoardLayout from "@/components/layout/DashBoardLayout";
+// import { role } from "@/constants";
+// import type { TRole } from "@/types";
+// import { generateRoutes } from "@/utils/generateRoute";
+// import { adminSideBarItems } from "./adminSideBarItems";
 
 const router = createBrowserRouter([
   {
@@ -27,13 +35,33 @@ const router = createBrowserRouter([
     ],
   },
   {
-    Component: withAuth(DashBoardLayout, role.superAdmin as TRole),
+    // Component: withAuth(DashBoardLayout, role.superAdmin as TRole),
+    Component: DashBoardLayout,
     path: "/admin",
     children: [
       { index: true, element: <Navigate to="/admin/anlytics" /> },
       ...generateRoutes(adminSideBarItems),
     ],
   },
+  {
+    // Component: withAuth(DashBoardLayout, role.superAdmin as TRole),
+    Component: DashBoardLayout,
+    path: "/driver",
+    children: [
+      { index: true, element: <Navigate to="/driver/earnings" /> },
+      ...generateRoutes(driverSideBarItems),
+    ],
+  },
+  {
+    // Component: withAuth(DashBoardLayout, role.superAdmin as TRole),
+    Component: DashBoardLayout,
+    path: "/rider",
+    children: [
+      { index: true, element: <Navigate to="/rider/rideRequest" /> },
+      ...generateRoutes(riderSideBarItems),
+    ],
+  },
+
   {
     path: "/login",
     Component: LoginPage,

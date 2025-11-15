@@ -1,36 +1,40 @@
-import Analytics from "@/pages/admin/Analytics";
-import DriverOverView from "@/pages/admin/DriverOverView";
-import ProfileUpdate from "@/pages/admin/ProfileUpdate";
-import RiderOverView from "@/pages/admin/RiderOverView";
+import DriverOverView from "@/pages/Admin/DriverOverView";
+import ProfileUpdate from "@/pages/ProfileUpdate";
+import RiderOverView from "@/pages/Admin/RiderOverView";
 import type { ISideBarItem } from "@/types";
+import { Search } from "lucide-react";
+import { lazy } from "react";
+
+const Analytics = lazy(() => import("@/pages/Admin/Analytics"));
 
 export const adminSideBarItems: ISideBarItem[] = [
   {
-    title: "DashBoard",
+    title: "Admin Dashboard",
     items: [
       {
         title: "Analytics",
-        url: "/admin/anlytics",
+        url: "analytics", // ✅ becomes /admin/analytics
         component: Analytics,
       },
-    ],
-  },
-  {
-    title: "User Management",
-    items: [
+      {
+        title: "Search",
+        url: "search",
+        component: Search,
+        icon: Search,
+      },
       {
         title: "Rider",
-        url: "/admin/ride/rider",
+        url: "rideOverview", // ✅ /admin/rideOverview
         component: RiderOverView,
       },
       {
         title: "Driver",
-        url: "/admin/ride/driver",
+        url: "ride/driver", // ✅ /admin/ride/driver
         component: DriverOverView,
       },
       {
         title: "Profile",
-        url: "/admin/profile",
+        url: "profile", // ✅ /admin/profile
         component: ProfileUpdate,
       },
     ],
