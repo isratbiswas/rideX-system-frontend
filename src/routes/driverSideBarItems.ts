@@ -5,6 +5,7 @@ import RideStatus from "@/pages/Driver/RideStatus";
 import RideHistory from "@/pages/Rider/RideHistory";
 import type { ISideBarItem } from "@/types";
 import ApproveRequest from "@/pages/Driver/ApproveRequest";
+import DriverHistory from "@/pages/Driver/DriverHistory";
 
 export const driverSideBarItems: ISideBarItem[] = [
   {
@@ -17,28 +18,28 @@ export const driverSideBarItems: ISideBarItem[] = [
       },
       {
         title: "Incoming request",
-        url: "request", // ✅ becomes /admin/analytics
+        url: "request",
         component: RideRequest,
       },
 
       {
-        title: "Ride History",
-        url: "rideHistory", // ✅ /admin/rideOverview
-        component: RideHistory,
+        title: "Driver History",
+        url: "me",
+        component: DriverHistory,
       },
       {
         title: "Ride Status",
-        url: "rideStatus", // ✅ /admin/ride/driver
+        url: "rideStatus",
         component: RideStatus,
       },
       {
         title: "Earning Chart",
-        url: "earnings", // ✅ /admin/ride/driver
+        url: "earnings",
         component: EarningsChart,
       },
       {
         title: "Profile",
-        url: "profile", // ✅ /admin/profile
+        url: "profile",
         component: ProfileUpdate,
       },
     ],

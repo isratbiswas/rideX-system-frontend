@@ -39,7 +39,7 @@ const router = createBrowserRouter([
     Component: DashBoardLayout,
     path: "/admin",
     children: [
-      { index: true, element: <Navigate to="/admin/anlytics" /> },
+      { index: true, element: <Navigate to="/admin/profile" /> },
       ...generateRoutes(adminSideBarItems),
     ],
   },
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     Component: DashBoardLayout,
     path: "/driver",
     children: [
-      { index: true, element: <Navigate to="/driver/earnings" /> },
+      { index: true, element: <Navigate to="/driver/profile" /> },
       ...generateRoutes(driverSideBarItems),
     ],
   },
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
     Component: DashBoardLayout,
     path: "/rider",
     children: [
-      { index: true, element: <Navigate to="/rider/rideRequest" /> },
+      { index: true, element: <Navigate to="/rider/profile" /> },
       ...generateRoutes(riderSideBarItems),
     ],
   },

@@ -10,6 +10,8 @@ export interface IResponse<T> {
   data: T;
 }
 
+export type IsActive = "ACTIVE" | "INACTIVE" | "BLOCKED" | "UNBLOCKED";
+
 export interface ISideBarItem {
   title: string;
   items: {
@@ -18,4 +20,18 @@ export interface ISideBarItem {
     component: ComponentType;
     icon?: LucideIcon;
   }[];
+}
+export type AvailabilityStatus = "ONLINE" | "OFFLINE";
+
+export interface IUser {
+  _id: string;
+  name: string;
+  email: string;
+  role: TRole;
+  isActive?: IsActive;
+  isBlocked?: boolean;
+  approve?: boolean;
+  isVerified?: boolean;
+  availabilityStatus?: AvailabilityStatus;
+  phone?: String;
 }

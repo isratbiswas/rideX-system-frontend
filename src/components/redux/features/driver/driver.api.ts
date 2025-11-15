@@ -1,9 +1,10 @@
+import type { AvailabilityStatus } from "@/types";
 import { baseApi } from "../../baseApi";
 
 export const driverApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     // 👤 Get driver profile
-    getDriverProfile: builder.query({
+    GetDriverHistory: builder.query({
       query: () => ({
         url: "/driver/me",
         method: "GET",
@@ -14,18 +15,17 @@ export const driverApi = baseApi.injectEndpoints({
 
     // 🧾 Send request for approval
     requestForApprove: builder.mutation({
-      query: (approvalData) => ({
+      query: () => ({
         url: "/driver/approveRequest",
         method: "POST",
-        body: approvalData,
       }),
       invalidatesTags: ["DRIVER"],
     }),
 
     // 🚕 Accept ride
     acceptRide: builder.mutation({
-      query: (id) => ({
-        url: `/driver/accept/${id}`,
+      query: ({ rideId }) => ({
+        url: `/driver/accept/${rideId}`,
         method: "POST",
       }),
       invalidatesTags: ["DRIVER"],
@@ -41,9 +41,9 @@ export const driverApi = baseApi.injectEndpoints({
     }),
 
     // ❌ Cancel ride
-    cancelRide: builder.mutation({
+    rejectRide: builder.mutation({
       query: (id) => ({
-        url: `/driver/cancel/${id}`,
+        url: `/driver/reject/${id}`,
         method: "PATCH",
       }),
       invalidatesTags: ["DRIVER"],
@@ -54,21 +54,20 @@ export const driverApi = baseApi.injectEndpoints({
       query: ({ id, status }) => ({
         url: `/driver/status/${id}`,
         method: "PATCH",
-        body: { status },
+        data: { status },
       }),
       invalidatesTags: ["DRIVER"],
     }),
 
     // 🟢 Set availability
     setAvailability: builder.mutation({
-      query: (availabilityData) => ({
+      query: (availabilityStatus: "ONLINE" | "OFFLINE") => ({
         url: "/driver/availability",
         method: "PATCH",
-        body: availabilityData,
+        data: { availabilityStatus }, // { availabilityStatus: "ONLINE" }
       }),
-      invalidatesTags: ["DRIVER"],
+      invalidatesTags: ["DRIVER", "USER"],
     }),
-
     // 💰 View driver earnings
     viewEarnings: builder.query({
       query: () => ({
@@ -82,11 +81,11 @@ export const driverApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useGetDriverProfileQuery,
+  useGetDriverHistoryQuery,
   useRequestForApproveMutation,
   useAcceptRideMutation,
   useCompleteRideMutation,
-  useCancelRideMutation,
+  useRejectRideMutation,
   useUpdateStatusMutation,
   useSetAvailabilityMutation,
   useViewEarningsQuery,

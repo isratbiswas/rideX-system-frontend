@@ -1,3 +1,4 @@
+import type { IUser } from "@/types";
 import { baseApi } from "../../baseApi";
 
 export const adminApi = baseApi.injectEndpoints({
@@ -21,20 +22,29 @@ export const adminApi = baseApi.injectEndpoints({
       providesTags: ["ADMIN", "ANALYTICS"],
       transformResponse: (response) => response.data,
     }),
-
+    // users
+    getAllUsers: builder.query({
+      query: ({ role }) => ({
+        url: "/user/all-users",
+        params: { role },
+        method: "GET",
+      }),
+      providesTags: ["USER"],
+      transformResponse: (response: { data: IUser[] }) => response.data,
+    }),
     // ✅ Approve driver
     approveDriver: builder.mutation({
-      query: (id) => ({
-        url: `/admin/approve/${id}`,
+      query: (driverId) => ({
+        url: `/admin/approve/${driverId}`,
         method: "PATCH",
       }),
       invalidatesTags: ["DRIVER"],
     }),
 
     // ❌ Reject driver
-    rejectDriver: builder.mutation({
-      query: (id) => ({
-        url: `/admin/reject/${id}`,
+    suspendDriver: builder.mutation({
+      query: (driverId) => ({
+        url: `/admin/suspend/${driverId}`,
         method: "PATCH",
       }),
       invalidatesTags: ["DRIVER"],
@@ -42,8 +52,15 @@ export const adminApi = baseApi.injectEndpoints({
 
     // 🚫 Block user (rider or driver)
     blockUser: builder.mutation({
-      query: (id) => ({
-        url: `/admin/block/${id}`,
+      query: (userId) => ({
+        url: `/admin/block/${userId}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["USER"],
+    }),
+    unBlockUser: builder.mutation({
+      query: (userId) => ({
+        url: `/admin/unblock/${userId}`,
         method: "PATCH",
       }),
       invalidatesTags: ["USER"],
@@ -55,6 +72,8 @@ export const {
   useGetPendingDriversQuery,
   useGetAnalyticsOverviewQuery,
   useApproveDriverMutation,
-  useRejectDriverMutation,
+  useSuspendDriverMutation,
   useBlockUserMutation,
+  useUnBlockUserMutation,
+  useGetAllUsersQuery,
 } = adminApi;

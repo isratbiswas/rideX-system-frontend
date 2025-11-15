@@ -1,5 +1,3 @@
-import { ChartBar, Home, Inbox, Search, User } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -11,25 +9,49 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router";
-import { adminSideBarItems } from "@/routes/adminSideBarItems";
-import { riderSideBarItems } from "@/routes/riderSideBarItems";
 import { getSideBarItems } from "@/utils/getSideBarItems";
 import { useUserInfoQuery } from "./redux/features/auth/auth.api";
-
-// Menu items.
+import { useSetAvailabilityMutation } from "./redux/features/driver/driver.api";
+import { Switch } from "./ui/switch";
+import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 export function AppSidebar() {
-  const { data: userData } = useUserInfoQuery(undefined);
-  console.log(userData);
-  const data = {
-    navMain: getSideBarItems(userData?.data?.role),
+  const { data: userData, refetch } = useUserInfoQuery(undefined);
+  const navData = getSideBarItems(userData?.data?.role);
+  const [status, setStatus] = useState<"ONLINE" | "OFFLINE">("OFFLINE");
+
+  // 🔥 Sync backend → UI automatically
+  useEffect(() => {
+    if (userData?.data?.availabilityStatus) {
+      setStatus(userData.data.availabilityStatus);
+    }
+  }, [userData]);
+
+  const [setAvailability, { isLoading }] = useSetAvailabilityMutation();
+
+  const handleToggle = async (checked: boolean) => {
+    const newStatus = checked ? "ONLINE" : "OFFLINE";
+
+    try {
+      await setAvailability(newStatus).unwrap();
+      setStatus(newStatus); // instant UI feedback
+      toast.success(`You are now ${newStatus}`);
+
+      refetch(); // 🔥 Auto refresh backend state
+    } catch (err: any) {
+      toast.error("Failed to update availability");
+      setStatus(status); // revert
+    }
   };
+
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
+          {/* Logo */}
           <SidebarGroupLabel>
-            <div className="flex h-12 mt-14   ">
+            <div className="flex h-12 mt-14">
               <Link to="/">
                 <img
                   src="https://images-platform.99static.com//9wMmKJaFmUE1o63VZO7fgqxhOk8=/1083x2387:1929x3234/fit-in/500x500/99designs-contests-attachments/113/113769/attachment_113769214"
@@ -37,23 +59,41 @@ export function AppSidebar() {
                   alt="ride-logo"
                 />
               </Link>
-              <h1 className="text-3xl text-Black font-bold dark:text-white mt-2 m-4">
+              <h1 className="text-3xl text-black font-bold dark:text-white mt-2 m-4">
                 RideX
               </h1>
             </div>
           </SidebarGroupLabel>
-          {data.navMain.map((item) => (
-            <SidebarGroup key={item.title} className="mt-16">
-              <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+
+          {/* Sidebar menu items */}
+          {navData.map((group) => (
+            <SidebarGroup key={group.title} className="mt-16">
+              <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {item.items.map((item) => (
+                  {group.items.map((item) => (
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild>
                         <Link to={item.url}>{item.title}</Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}
+
+                  {/* Availability switch for drivers */}
+                  {userData?.data?.role === "DRIVER" && (
+                    <SidebarMenuItem>
+                      <div className="flex items-center justify-between px-2">
+                        <span className="text-sm font-medium">
+                          Availability
+                        </span>
+                        <Switch
+                          checked={status === "ONLINE"}
+                          onCheckedChange={handleToggle}
+                          disabled={isLoading}
+                        />
+                      </div>
+                    </SidebarMenuItem>
+                  )}
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
