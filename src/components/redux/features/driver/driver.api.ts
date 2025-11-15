@@ -1,4 +1,3 @@
-import type { AvailabilityStatus } from "@/types";
 import { baseApi } from "../../baseApi";
 
 export const driverApi = baseApi.injectEndpoints({

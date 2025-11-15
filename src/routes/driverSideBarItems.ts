@@ -1,8 +1,4 @@
 import ProfileUpdate from "@/pages/ProfileUpdate";
-import EarningsChart from "@/pages/Driver/EarningsChart";
-import RideRequest from "@/pages/Driver/RideRequest";
-import RideStatus from "@/pages/Driver/RideStatus";
-import RideHistory from "@/pages/Rider/RideHistory";
 import type { ISideBarItem } from "@/types";
 import ApproveRequest from "@/pages/Driver/ApproveRequest";
 import DriverHistory from "@/pages/Driver/DriverHistory";
@@ -16,27 +12,27 @@ export const driverSideBarItems: ISideBarItem[] = [
         url: "approveRequest", // ✅ becomes /admin/analytics
         component: ApproveRequest,
       },
-      {
-        title: "Incoming request",
-        url: "request",
-        component: RideRequest,
-      },
+      // {
+      //   title: "Incoming request",
+      //   url: "request",
+      //   component: RideRequest,
+      // },
 
       {
         title: "Driver History",
         url: "me",
         component: DriverHistory,
       },
-      {
-        title: "Ride Status",
-        url: "rideStatus",
-        component: RideStatus,
-      },
-      {
-        title: "Earning Chart",
-        url: "earnings",
-        component: EarningsChart,
-      },
+      // {
+      //   title: "Ride Status",
+      //   url: "rideStatus",
+      //   component: RideStatus,
+      // },
+      // {
+      //   title: "Earning Chart",
+      //   url: "earnings",
+      //   component: EarningsChart,
+      // },
       {
         title: "Profile",
         url: "profile",

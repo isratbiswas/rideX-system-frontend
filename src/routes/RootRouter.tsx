@@ -4,14 +4,10 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Features from "@/pages/Features";
 import Contact from "@/pages/Contact";
-
 import UnAuthorized from "@/pages/UnAuthorized";
 import LoginPage from "@/pages/Login";
 import RegisterPage from "@/pages/Register";
 import DashBoardLayout from "@/components/layout/DashBoardLayout";
-import Analytics from "@/pages/Admin/Analytics";
-import RideRequestForm from "@/pages/Rider/RideRequestForm";
-import RiderOverView from "@/pages/Admin/RiderOverView";
 import { generateRoutes } from "@/utils/generateRoute";
 import { adminSideBarItems } from "./adminSideBarItems";
 import { riderSideBarItems } from "./riderSideBarItems";
