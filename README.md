@@ -146,21 +146,4 @@ src/
 ├── utils/              # Utility functions
 └── App.tsx             # Main App component
 🔐 Test Credentials
-Admin
-
-Email: super@gmail.com
-
-Password: A1234$
-
-Driver
-
-Email: anu@gmail.com
-
-Password: A1234$
-
-Rider
-
-Email: rahim@gmail.com
-
-Password: A1234$
 ```
