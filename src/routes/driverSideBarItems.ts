@@ -1,7 +1,8 @@
 import ProfileUpdate from "@/pages/ProfileUpdate";
 import type { ISideBarItem } from "@/types";
 import ApproveRequest from "@/pages/Driver/ApproveRequest";
-import DriverHistory from "@/pages/Driver/DriverHistory";
+import GetRideRequest from "@/pages/Driver/GetRideRequest";
+import DriverHistoryPage from "@/pages/Driver/DriverHistory";
 
 export const driverSideBarItems: ISideBarItem[] = [
   {
@@ -12,17 +13,17 @@ export const driverSideBarItems: ISideBarItem[] = [
         url: "approveRequest", // ✅ becomes /admin/analytics
         component: ApproveRequest,
       },
-      // {
-      //   title: "Incoming request",
-      //   url: "request",
-      //   component: RideRequest,
-      // },
-
       {
-        title: "Driver History",
-        url: "me",
-        component: DriverHistory,
+        title: "Incoming request",
+        url: "request",
+        component: GetRideRequest,
       },
+
+      // {
+      //   title: "Driver History",
+      //   url: "me",
+      //   component: DriverHistoryPage,
+      // },
       // {
       //   title: "Ride Status",
       //   url: "rideStatus",

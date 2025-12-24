@@ -2,7 +2,7 @@ import { baseApi } from "../../baseApi";
 
 export const driverApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // 👤 Get driver profile
+    //  Get driver profile
     GetDriverHistory: builder.query({
       query: () => ({
         url: "/driver/me",
@@ -12,7 +12,17 @@ export const driverApi = baseApi.injectEndpoints({
       transformResponse: (response) => response.data,
     }),
 
-    // 🧾 Send request for approval
+    //get Ride request
+    GetRideRequest: builder.query({
+      query: () => ({
+        url: "/driver/getRequest",
+        method: "GET",
+      }),
+      providesTags: ["DRIVER"],
+      transformResponse: (response) => response.data,
+    }),
+
+    //  Send request for approval
     requestForApprove: builder.mutation({
       query: () => ({
         url: "/driver/approveRequest",
@@ -23,9 +33,9 @@ export const driverApi = baseApi.injectEndpoints({
 
     // 🚕 Accept ride
     acceptRide: builder.mutation({
-      query: ({ rideId }) => ({
+      query: (rideId) => ({
         url: `/driver/accept/${rideId}`,
-        method: "POST",
+        method: "PATCH",
       }),
       invalidatesTags: ["DRIVER"],
     }),
@@ -41,8 +51,8 @@ export const driverApi = baseApi.injectEndpoints({
 
     // ❌ Cancel ride
     rejectRide: builder.mutation({
-      query: (id) => ({
-        url: `/driver/reject/${id}`,
+      query: (rideId) => ({
+        url: `/driver/reject/${rideId}`,
         method: "PATCH",
       }),
       invalidatesTags: ["DRIVER"],
@@ -81,6 +91,7 @@ export const driverApi = baseApi.injectEndpoints({
 
 export const {
   useGetDriverHistoryQuery,
+  useGetRideRequestQuery,
   useRequestForApproveMutation,
   useAcceptRideMutation,
   useCompleteRideMutation,

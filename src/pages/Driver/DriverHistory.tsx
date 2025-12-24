@@ -22,6 +22,7 @@ const DriverHistoryPage = () => {
     isLoading,
     isError,
   } = useGetDriverHistoryQuery(undefined);
+  console.log(driverData, "driverDaat");
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading driver data.</p>;

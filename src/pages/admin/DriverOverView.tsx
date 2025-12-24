@@ -6,6 +6,7 @@ import {
 } from "@/components/redux/features/admin/admin.api";
 import toast from "react-hot-toast";
 import { CheckCircle, XCircle, Clock } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const DriverOverView = () => {
   const { data: drivers = [], isLoading } =
@@ -40,8 +41,9 @@ const DriverOverView = () => {
     }
   };
 
-  if (isLoading)
-    return <p className="text-gray-500 text-center mt-8">Loading drivers...</p>;
+  if (isLoading) {
+    return <Skeleton className="h-40 w-full rounded-xl" />;
+  }
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">

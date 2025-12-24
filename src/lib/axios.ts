@@ -5,45 +5,29 @@ export const axiosInstance = axios.create({
   baseURL: config.baseUrl,
   withCredentials: true,
 });
-// optional interceptors
+
+// Request interceptor
+axiosInstance.interceptors.request.use(
+  (config) => {
+    console.log("Axios Request:", config);
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Response interceptor
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log("Axios Response:", response);
+    return response;
+  },
   (error) => {
-    // ignore 403 on user/me to prevent annoying logs
     if (
       error.response?.status === 403 &&
       error.config.url?.includes("/user/me")
     ) {
       return Promise.resolve({ data: null });
     }
-    return Promise.reject(error);
-  }
-);
-
-// Add a request interceptor
-axiosInstance.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
-    console.log("Axios", config);
-    return config;
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
-
-// Add a response interceptor
-axiosInstance.interceptors.response.use(
-  function onFulfilled(response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    console.log("Axios", response);
-    return response;
-  },
-  function onRejected(error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
     return Promise.reject(error);
   }
 );

@@ -78,7 +78,7 @@ const ProfileUpdate = () => {
                 value={formData.name}
                 onChange={handleChange}
                 disabled={!isEditing || isUpdating}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none ${
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none  text-gray-700 ${
                   isEditing
                     ? "border-green-500 bg-white"
                     : "border-gray-300 bg-gray-100"

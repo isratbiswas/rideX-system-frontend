@@ -30,14 +30,14 @@ const Contact = () => {
   };
   return (
     <section className="py-16 px-6 md:px-20">
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
         <div>
           <img
             src="https://images.unsplash.com/photo-1544141687-4a0477ba4ccc?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
           />
         </div>
-        <div className="shadow-md rounded-md">
+        <div className="lg:shadow-md rounded-md">
           <div>
             <h2 className="text-3xl font-bold text-center mb-3">Contact Us</h2>
             <p className="text-center text-gray-600 mb-6">
@@ -51,11 +51,11 @@ const Contact = () => {
                 name="name"
                 render={(field) => (
                   <FormItem>
-                    <FormLabel className="ml-10">Full Name</FormLabel>
+                    <FormLabel className="lg:ml-10">Full Name</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Name"
-                        className="flex-1 w-96 ml-10"
+                        className="flex-1 lg:w-96 sm:w-full lg:ml-10"
                         {...field}
                         required
                       />
@@ -70,11 +70,11 @@ const Contact = () => {
                 name="email"
                 render={(field) => (
                   <FormItem>
-                    <FormLabel className="ml-10">Email</FormLabel>
+                    <FormLabel className="lg:ml-10 mt-4">Email</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="john@example.com"
-                        className="flex-1 w-98 ml-10"
+                        className="flex-1 lg:w-96 sm:w-full lg:ml-10"
                         {...field}
                         required
                       />
@@ -89,14 +89,14 @@ const Contact = () => {
                 name="message"
                 render={(field) => (
                   <FormItem>
-                    <FormLabel className="ml-10">
+                    <FormLabel className="lg:ml-10 mt-4">
                       What can we help you?
                     </FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Describe your problem in at least 250 characters"
                         rows={4}
-                        className="ml-10 w-96"
+                        className="flex-1 lg:w-96 sm:w-full lg:ml-10"
                         {...field}
                         required
                       />
@@ -106,10 +106,10 @@ const Contact = () => {
                   </FormItem>
                 )}
               />
-              <div className="mx-auto ">
+              <div className="mx-auto mb-18 ">
                 <Button
                   type="submit"
-                  className="mb-4  items-center ml-10 w-96  bg-green-700 hover:bg-green-900"
+                  className="mb-4 mt-4  items-center lg:ml-10 lg:w-96  bg-green-700 hover:bg-green-900   sm:w-50 "
                 >
                   Submit
                 </Button>
