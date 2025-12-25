@@ -1,4 +1,3 @@
-import React from "react";
 import SectionWrapper from "../layout/SectionWrapper";
 import { Button } from "../ui/button";
 

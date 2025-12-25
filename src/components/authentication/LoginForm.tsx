@@ -39,7 +39,7 @@ export function LoginForm({
 
       if (res.success) {
         toast.success("Logged in successfully");
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (err: any) {
       if (err?.data?.message === "Password does not match") {
@@ -59,7 +59,7 @@ export function LoginForm({
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-3xl font-bold text-indigo-400  ">
+        <h1 className="text-3xl font-bold text-[#DE802B]  ">
           Login to your account
         </h1>
         <p className="text-sm text-muted-foreground">
@@ -133,7 +133,7 @@ export function LoginForm({
           {/* Submit */}
           <Button
             type="submit"
-            className="w-full bg-slate-600 hover:bg-slate-700 text-gray-200"
+            className="bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold px-6 py-3 w-full  mt-4 rounded-xl shadow-lg hover:from-orange-500 hover:to-orange-700 hover:scale-105 transition-transform duration-300"
           >
             Login
           </Button>

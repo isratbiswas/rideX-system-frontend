@@ -47,11 +47,11 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarContent>
+      <SidebarContent className="bg-[#D8C9A7]">
         <SidebarGroup>
           {/* Logo */}
           <SidebarGroupLabel>
-            <div className="flex h-12 mt-14">
+            <div className="flex h-12 mt-14 ">
               <Link to="/">
                 <img
                   src="https://images-platform.99static.com//9wMmKJaFmUE1o63VZO7fgqxhOk8=/1083x2387:1929x3234/fit-in/500x500/99designs-contests-attachments/113/113769/attachment_113769214"
@@ -59,7 +59,7 @@ export function AppSidebar() {
                   alt="ride-logo"
                 />
               </Link>
-              <h1 className="text-3xl text-black font-bold dark:text-white mt-2 m-4">
+              <h1 className="text-3xl text-[#DE802B] font-bold dark:text-white mt-4 m-4">
                 RideX
               </h1>
             </div>
@@ -68,12 +68,17 @@ export function AppSidebar() {
           {/* Sidebar menu items */}
           {navData.map((group) => (
             <SidebarGroup key={group.title} className="mt-16">
-              <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
+              <SidebarGroupLabel className="text-[#5C6F2B] text-xl font-semibold mb-4">
+                {group.title}
+              </SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {group.items.map((item) => (
                     <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton asChild>
+                      <SidebarMenuButton
+                        asChild
+                        className="border-1 border-gray-400/30"
+                      >
                         <Link to={item.url}>{item.title}</Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>

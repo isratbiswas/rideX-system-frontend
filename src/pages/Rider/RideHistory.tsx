@@ -36,53 +36,58 @@ const RideHistory = () => {
 
   if (isLoading) return <p className="text-center mt-10">Loading rides...</p>;
   if (rideHistory.length === 0)
-    return <p className="text-center mt-10">No rides found.</p>;
+    return <p className="text-center mt-10 font-bold">No rides found.</p>;
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">My Ride History</h1>
+    <div className="p-6 max-w-5xl mx-auto">
+      <h1 className="text-2xl font-bold mb-6 text-[#DE802B]">
+        My Ride History
+      </h1>
 
-      <div className="space-y-4">
+      {/* ===== 📌 Mobile Cards ===== */}
+      <div className="space-y-4 md:hidden">
         {rideHistory.map((ride) => {
           const canCancel = ride.status === "requested";
-
           return (
             <div
               key={ride._id}
-              className="p-4 border rounded-lg shadow-sm hover:shadow-md transition"
+              className="border rounded-xl shadow-sm p-4 space-y-3 bg-white"
             >
-              <div className="flex justify-between items-center mb-2 gap-2">
-                <span className="font-md">
-                  Status: {ride.status.toUpperCase()}
+              <div className="flex justify-between items-center">
+                <span className="font-semibold">
+                  {ride.status.toUpperCase()}
                 </span>
-
-                <span className="text-sm text-gray-500">
+                <span className="text-xs text-gray-500">
                   {new Date(ride.createdAt).toLocaleString()}
                 </span>
               </div>
 
-              <div className="flex items-center gap-4 mb-2">
-                <FaMapMarkerAlt className="text-green-500" />
-                <span>{ride.pickup.address}</span>
-                <span className="mx-2">→</span>
-                <span>{ride.destination.address}</span>
+              <div className="text-sm">
+                <div className="flex items-center gap-2 mb-1">
+                  <FaMapMarkerAlt className="text-green-500" />
+                  <span>{ride.pickup.address}</span>
+                </div>
+                <span className="ml-6 text-gray-500">↓</span>
+                <div className="flex items-center gap-2 mt-1">
+                  <FaMapMarkerAlt className="text-red-500 rotate-180" />
+                  <span>{ride.destination.address}</span>
+                </div>
               </div>
 
-              <div className="flex items-center gap-4 mb-2">
-                <FaDollarSign className="text-yellow-500" />
-                <span>Fare: {ride.fare} BDT</span>
-              </div>
+              <p className="flex items-center gap-1 text-sm">
+                <FaDollarSign className="text-yellow-500" /> {ride.fare} BDT
+              </p>
 
-              <div className="text-sm text-gray-600 mb-3">
+              <p className="text-sm text-gray-600">
                 Driver:{" "}
                 {ride.driverId ? ride.driverId.name : "Not assigned yet"}
-              </div>
+              </p>
 
               {canCancel && (
                 <button
                   onClick={() => handleCancelRide(ride._id)}
                   disabled={cancelLoading}
-                  className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition disabled:opacity-50"
+                  className="w-full py-2 mt-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 transition"
                 >
                   {cancelLoading ? "Cancelling..." : "Cancel Ride"}
                 </button>
@@ -90,6 +95,64 @@ const RideHistory = () => {
             </div>
           );
         })}
+      </div>
+
+      {/* ===== 🖥 Desktop Table ===== */}
+      <div className="hidden md:block overflow-x-auto rounded-lg shadow-sm bg-white space-y-6 max-w-5xl mx-auto mt-6">
+        <table className="w-full border-collapse">
+          <thead className="bg-gray-100 text-gray-700">
+            <tr>
+              <th className="p-3 text-left">Status</th>
+              <th className="p-3 text-left">Pickup → Destination</th>
+              <th className="p-3 text-left">Fare</th>
+              <th className="p-3 text-left">Driver</th>
+              <th className="p-3 text-left">Date</th>
+              <th className="p-3 text-left">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {rideHistory.map((ride) => {
+              const canCancel = ride.status === "requested";
+
+              return (
+                <tr
+                  key={ride._id}
+                  className="border-b hover:bg-gray-50 transition text-gray-600"
+                >
+                  <td className="p-3 font-medium ">
+                    {ride.status.toUpperCase()}
+                  </td>
+                  <td className="p-3">
+                    <span className="text-gray-600 font-medium">
+                      {ride.pickup.address}
+                    </span>{" "}
+                    <span className="text-gray-600">→</span>{" "}
+                    <span>{ride.destination.address}</span>
+                  </td>
+                  <td className="p-3 font-medium">{ride.fare} BDT</td>
+                  <td className="p-3">
+                    {ride.driverId ? ride.driverId.name : "Not assigned"}
+                  </td>
+                  <td className="p-3">
+                    {new Date(ride.createdAt).toLocaleString()}
+                  </td>
+                  <td className="p-3 gap-8">
+                    {canCancel && (
+                      <button
+                        onClick={() => handleCancelRide(ride._id)}
+                        disabled={cancelLoading}
+                        className="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 transition disabled:opacity-50"
+                      >
+                        {cancelLoading ? "..." : "Cancel"}
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import ProfileUpdate from "@/pages/ProfileUpdate";
 import type { ISideBarItem } from "@/types";
 import ApproveRequest from "@/pages/Driver/ApproveRequest";
 import GetRideRequest from "@/pages/Driver/GetRideRequest";
-import DriverHistoryPage from "@/pages/Driver/DriverHistory";
 
 export const driverSideBarItems: ISideBarItem[] = [
   {
