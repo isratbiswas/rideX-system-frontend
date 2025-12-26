@@ -1,3 +1,5 @@
+import { MobileCardSkeleton } from "@/components/layout/MobileSkeleton";
+import { TableSkeleton } from "@/components/layout/TableSkeleton";
 import {
   useCancelRideMutation,
   useGetMeQuery,
@@ -34,13 +36,19 @@ const RideHistory = () => {
     }
   };
 
-  if (isLoading) return <p className="text-center mt-10">Loading rides...</p>;
+  if (isLoading)
+    return (
+      <div className="max-w-5xl mx-auto">
+        <MobileCardSkeleton />
+        <TableSkeleton />
+      </div>
+    );
   if (rideHistory.length === 0)
     return <p className="text-center mt-10 font-bold">No rides found.</p>;
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6 text-[#DE802B]">
+      <h1 className="text-2xl font-bold mb-6  text-slate-800">
         My Ride History
       </h1>
 

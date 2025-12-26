@@ -12,6 +12,9 @@ import { generateRoutes } from "@/utils/generateRoute";
 import { adminSideBarItems } from "./adminSideBarItems";
 import { riderSideBarItems } from "./riderSideBarItems";
 import { driverSideBarItems } from "./driverSideBarItems";
+import { withAuth } from "@/utils/withAuth";
+import type { TRole } from "@/types";
+import { role } from "@/constants";
 // import { withAuth } from "@/utils/withAuth";
 // import DashBoardLayout from "@/components/layout/DashBoardLayout";
 // import { role } from "@/constants";
@@ -31,8 +34,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    // Component: withAuth(DashBoardLayout, role.superAdmin as TRole),
-    Component: DashBoardLayout,
+    Component: withAuth(DashBoardLayout, role.superAdmin as TRole),
     path: "/admin",
     children: [
       { index: true, element: <Navigate to="/admin/profile" /> },
@@ -40,8 +42,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    // Component: withAuth(DashBoardLayout, role.superAdmin as TRole),
-    Component: DashBoardLayout,
+    Component: withAuth(DashBoardLayout, role.driver as TRole),
     path: "/driver",
     children: [
       { index: true, element: <Navigate to="/driver/profile" /> },
@@ -49,8 +50,8 @@ const router = createBrowserRouter([
     ],
   },
   {
-    // Component: withAuth(DashBoardLayout, role.superAdmin as TRole),
-    Component: DashBoardLayout,
+    Component: withAuth(DashBoardLayout, role.rider as TRole),
+    // Component: DashBoardLayout,
     path: "/rider",
     children: [
       { index: true, element: <Navigate to="/rider/profile" /> },

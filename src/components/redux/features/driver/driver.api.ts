@@ -33,8 +33,8 @@ export const driverApi = baseApi.injectEndpoints({
 
     // 🚕 Accept ride
     acceptRide: builder.mutation({
-      query: (rideId) => ({
-        url: `/driver/accept/${rideId}`,
+      query: (id) => ({
+        url: `/driver/accepted/${id}`,
         method: "PATCH",
       }),
       invalidatesTags: ["DRIVER"],
@@ -54,6 +54,7 @@ export const driverApi = baseApi.injectEndpoints({
       query: (rideId) => ({
         url: `/driver/reject/${rideId}`,
         method: "PATCH",
+        data: { status: "rejected" },
       }),
       invalidatesTags: ["DRIVER"],
     }),

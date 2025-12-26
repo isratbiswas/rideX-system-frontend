@@ -39,7 +39,7 @@ export function LoginForm({
 
       if (res.success) {
         toast.success("Logged in successfully");
-        navigate("/dashboard");
+        navigate("/");
       }
     } catch (err: any) {
       if (err?.data?.message === "Password does not match") {

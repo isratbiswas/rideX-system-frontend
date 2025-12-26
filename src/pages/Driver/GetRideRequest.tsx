@@ -1,10 +1,11 @@
+import { MobileCardSkeleton } from "@/components/layout/MobileSkeleton";
+import { TableSkeleton } from "@/components/layout/TableSkeleton";
 import {
   useAcceptRideMutation,
   useGetRideRequestQuery,
   useRejectRideMutation,
 } from "@/components/redux/features/driver/driver.api";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import toast from "react-hot-toast";
 
 const GetRideRequest = () => {
@@ -21,7 +22,7 @@ const GetRideRequest = () => {
     try {
       await acceptRide(rideId).unwrap();
       toast.success("Ride accepted successfully");
-    } catch (err) {
+    } catch {
       toast.error("Failed to accept ride");
     }
   };
@@ -30,7 +31,7 @@ const GetRideRequest = () => {
     try {
       await rejectRide(rideId).unwrap();
       toast.success("Ride rejected");
-    } catch (err) {
+    } catch {
       toast.error("Failed to reject ride");
     }
   };
@@ -38,28 +39,28 @@ const GetRideRequest = () => {
   if (isLoading) {
     return (
       <div className="p-6 space-y-4">
-        <Skeleton className="h-20 w-full rounded-xl" />
-        <Skeleton className="h-20 w-full rounded-xl" />
+        <MobileCardSkeleton />
+        <TableSkeleton />
       </div>
     );
   }
 
   if (isError) {
     return (
-      <p className="text-center text-red-500 mt-10">
+      <p className="text-center text-red-500 dark:text-red-400 mt-10">
         Failed to load ride requests
       </p>
     );
   }
 
   return (
-    <div className="p-4 md:p-6 max-w-7xl mx-auto">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-slate-800">
+    <div className="p-4 md:p-6 max-w-7xl mx-auto text-slate-800 dark:text-slate-200">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-slate-800 dark:text-slate-200">
         🚕 Ride Requests
       </h2>
 
       {rides.length === 0 ? (
-        <p className="text-slate-500 text-center mt-10">
+        <p className="text-slate-500 dark:text-slate-400 text-center mt-10">
           No ride requests available
         </p>
       ) : (
@@ -69,18 +70,18 @@ const GetRideRequest = () => {
             {rides.map((ride: any) => (
               <div
                 key={ride._id}
-                className="bg-white rounded-2xl shadow-md p-4 space-y-3"
+                className="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-4 space-y-3"
               >
                 <div>
-                  <p className="font-semibold text-slate-800">
+                  <p className="font-semibold text-slate-800 dark:text-slate-200">
                     {ride?.riderId?.name || "Unknown Rider"}
                   </p>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
                     {ride?.riderId?.email}
                   </p>
                 </div>
 
-                <div className="text-sm text-slate-600">
+                <div className="text-sm text-slate-600 dark:text-slate-300">
                   <p>
                     <span className="font-medium">Pickup:</span>{" "}
                     {ride?.pickup?.address}
@@ -91,7 +92,7 @@ const GetRideRequest = () => {
                   </p>
                 </div>
 
-                <p className="text-lg font-bold text-indigo-600">
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">
                   ৳{ride?.fare}
                 </p>
 
@@ -116,9 +117,9 @@ const GetRideRequest = () => {
           </div>
 
           {/* ================= DESKTOP VIEW (TABLE) ================= */}
-          <div className="hidden md:block  bg-white shadow-md overflow-x-auto">
-            <table className="w-full min-w-[1000px] text-sm border border-gray-200">
-              <thead className="bg-slate-100 text-slate-700">
+          <div className="hidden md:block bg-white dark:bg-slate-800 shadow-md overflow-x-auto">
+            <table className="w-full min-w-[1000px] text-sm border border-gray-200 dark:border-slate-700">
+              <thead className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
                 <tr>
                   <th className="px-4 py-3 text-left">Rider</th>
                   <th className="px-4 py-3 text-left">Email</th>
@@ -133,17 +134,21 @@ const GetRideRequest = () => {
                 {rides.map((ride: any) => (
                   <tr
                     key={ride._id}
-                    className="border-t hover:bg-slate-50 transition"
+                    className="border-t border-gray-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition"
                   >
-                    <td className="px-4 py-3 font-medium">
+                    <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">
                       {ride?.riderId?.name}
                     </td>
-                    <td className="px-4 py-3 text-slate-500">
+                    <td className="px-4 py-3 text-slate-500 dark:text-slate-400">
                       {ride?.riderId?.email}
                     </td>
-                    <td className="px-4 py-3">{ride?.pickup?.address}</td>
-                    <td className="px-4 py-3">{ride?.destination?.address}</td>
-                    <td className="px-4 py-3 font-semibold text-indigo-600">
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
+                      {ride?.pickup?.address}
+                    </td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
+                      {ride?.destination?.address}
+                    </td>
+                    <td className="px-4 py-3 font-semibold text-indigo-600 dark:text-indigo-400">
                       ৳{ride?.fare}
                     </td>
                     <td className="px-4 py-3">

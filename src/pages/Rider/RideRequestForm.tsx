@@ -15,8 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { rideFormSchema, type RideFormInput } from "@/zod";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
-import { MobileCardSkeleton } from "@/components/layout/MobileSkeleton";
-import { TableSkeleton } from "@/components/layout/TableSkeleton";
+import Loader from "@/components/layout/Loader";
 
 export default function RideRequestForm() {
   const [createRideRequest, isLoading] = useCreateRideRequestMutation();
@@ -44,17 +43,11 @@ export default function RideRequestForm() {
     }
   };
 
-  if (isLoading)
-    return (
-      <div className="max-w-5xl mx-auto">
-        <MobileCardSkeleton />
-        <TableSkeleton />
-      </div>
-    );
+  if (isLoading) <Loader />;
 
   return (
     <div className="w-full min-h-screen p-6 md:p-10 lg:p-16 bg-gray-50">
-      <h2 className="text-3xl font-semibold mb-6 text-[#DE802B]">
+      <h2 className="text-3xl font-semibold mb-6 text-slate-800">
         Ride Request
       </h2>
 

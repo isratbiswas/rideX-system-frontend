@@ -6,6 +6,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { FaRegUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
+import Loader from "@/components/layout/Loader";
 
 const ProfileUpdate = () => {
   const { data: userInfo, isLoading } = useUserInfoQuery(undefined);
@@ -51,18 +52,14 @@ const ProfileUpdate = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-gray-500 text-lg">Loading profile...</p>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
         <div className="flex flex-col items-center">
-          <div className="bg-green-100 text-green-500 rounded-full p-4 text-6xl mb-4">
+          <div className="bg-[#DE802B]-100 text-[#DE802B] rounded-full p-4 text-6xl mb-4">
             <FaRegUserCircle />
           </div>
 
@@ -134,7 +131,7 @@ const ProfileUpdate = () => {
             {!isEditing ? (
               <Button
                 onClick={handleEditToggle}
-                className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg"
+                className="bg-[#DE802B] hover:bg-[#CC561E] text-white px-6 py-2 rounded-lg"
               >
                 Edit Profile
               </Button>

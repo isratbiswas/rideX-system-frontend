@@ -77,7 +77,7 @@ export function AppSidebar() {
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton
                         asChild
-                        className="border-1 border-gray-400/30"
+                        className="border-1 border-gray-400/30 mb-3"
                       >
                         <Link to={item.url}>{item.title}</Link>
                       </SidebarMenuButton>

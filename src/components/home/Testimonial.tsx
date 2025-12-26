@@ -1,3 +1,4 @@
+import { Star } from "lucide-react";
 import SectionWrapper from "../layout/SectionWrapper";
 
 const feedbacks = [
@@ -18,30 +19,58 @@ const feedbacks = [
   },
   {
     name: "Ali-ul-Islam",
-    text: "“RideX is always on time and super affordable. It’s my go-to app whenever I need a quick ride.”",
+    text: "RideX is always on time and super affordable. It’s my go-to app whenever I need a quick ride.",
     rating: 5,
   },
 ];
+
 const Testimonial = () => {
   return (
-    <div className="bg-[#D8C9A7]/15">
+    <div className="bg-[#D8C9A7]/15 dark:bg-[#0D0D0D] transition-colors duration-300">
       <SectionWrapper>
-        <section className="py-16 ml-2 mr-2 text-center">
-          <h1 className="text-3xl font-bold mb-4 text-[#DE802B] ">
+        <section className="py-16 mx-2 text-center">
+          <h1 className="text-4xl font-extrabold mb-6 text-[#DE802B] dark:text-orange-400">
             What Our Riders Say
           </h1>
-          <div className="grid lg:grid-cols-4    sm:grid-cols-1 gap-4 m-4">
+          <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg mb-10">
+            Thousands of satisfied riders trust RideX every day. Here's what
+            they think.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1 gap-6">
             {feedbacks.map((feedback, i) => (
-              <div key={i} className="mt-6 mb-4">
-                <div className="bg-white shadow border-1 rounded-md h-50  px-4 py-14">
-                  <h2 className=" text-xl text-gray-800">{feedback.name}</h2>
-                  <p className="text-md  text-gray-600">{feedback.text}</p>
-                  <h5
-                    className="text-orange-400
-"
-                  >
-                    {feedback.rating}
-                  </h5>
+              <div
+                key={i}
+                className="bg-white dark:bg-[#1A1A1A] shadow-md rounded-2xl p-6 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+              >
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {feedback.name}
+                </h2>
+
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-4">
+                  {feedback.text}
+                </p>
+
+                {/* Rating stars */}
+                <div className="flex justify-center gap-1">
+                  {[...Array(5)].map((_, index) => {
+                    const fullStar = index + 1 <= Math.floor(feedback.rating);
+                    const halfStar =
+                      feedback.rating % 1 !== 0 &&
+                      index + 1 === Math.ceil(feedback.rating);
+
+                    return (
+                      <Star
+                        key={index}
+                        size={20}
+                        className={
+                          fullStar || halfStar
+                            ? "text-orange-500 fill-orange-400"
+                            : "text-gray-300 dark:text-gray-600"
+                        }
+                      />
+                    );
+                  })}
                 </div>
               </div>
             ))}

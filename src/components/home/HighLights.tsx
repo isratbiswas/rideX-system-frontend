@@ -3,6 +3,7 @@ import { GrUserManager } from "react-icons/gr";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { MdTimeToLeave } from "react-icons/md";
 import SectionWrapper from "../layout/SectionWrapper";
+
 const services = [
   {
     icon: <MdOutlinePriceCheck />,
@@ -25,27 +26,37 @@ const services = [
     desc: "Multiple options: Cash, Card, Wallet.",
   },
 ];
+
 const HighLights = () => {
   return (
-    <div className="bg-[#D8C9A7]/15">
+    <div className="bg-[#D8C9A7]/15 dark:bg-[#0D0D0D] transition-colors duration-300">
       <SectionWrapper>
-        <section className="py-16    text-center">
-          <h1 className="text-3xl font-bold mb-4 text-[#DE802B] ">
+        <section className="py-16 text-center">
+          <h1 className="text-4xl font-extrabold mb-4 text-[#DE802B] dark:text-orange-400">
             Why Choose RideX?
           </h1>
-          <div className="grid lg:grid-cols-4 sm:grid-cols-1 gap-4 px-8">
-            {services.map((service, i) => (
-              <div key={i} className="mt-6 mb-4">
-                <div className="bg-white rounded shadow-md border-1 h-48  px-4 py-14">
-                  <h2 className="text-3xl text-gray-900 font-bold  ml-21">
-                    {service.icon}
-                  </h2>
+          <p className="text-gray-700 dark:text-gray-300 max-w-xl mx-auto mb-10 text-lg">
+            Your comfort and safety are our top priorities. Here's what makes
+            RideX stand out.
+          </p>
 
-                  <h3 className="mt-2 text-xl font-semibold text-gray-800">
-                    {service.title}
-                  </h3>
-                  <p className="mt-1 text-md  text-gray-700">{service.desc}</p>
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
+            {services.map((service, i) => (
+              <div
+                key={i}
+                className="bg-white dark:bg-[#1A1A1A] rounded-2xl shadow-md hover:shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 p-6 flex flex-col items-center"
+              >
+                <div className="text-orange-500 dark:text-orange-400 text-5xl mb-4">
+                  {service.icon}
                 </div>
+
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  {service.title}
+                </h3>
+
+                <p className="text-base text-gray-600 dark:text-gray-300 max-w-[200px] mx-auto leading-relaxed">
+                  {service.desc}
+                </p>
               </div>
             ))}
           </div>
